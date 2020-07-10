@@ -78,9 +78,10 @@ const CreatePoint = () => {
         if (selectedUF === '0')
             return;//NOTHING
         axios.get<IBGEcityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUF}/municipios`)
-            .then(response => {
+            .then(async response => {
                 const cityNames = response.data.map(city => city.nome);
-                setCities(cityNames)
+                await setCities(cityNames)
+                console.log(cityNames)
             })
     }, [selectedUF])
 
@@ -110,7 +111,7 @@ const CreatePoint = () => {
     }
 
     function handleSelectItem(id: number){
-        //findIndex() => retorna um nr igual ou mair que zero!
+        //findIndex() => retorna um nr igual ou maior que zero!
         const alreadySelected = selectedItems.findIndex(item => item === id)
         
         if (alreadySelected >= 0) {
