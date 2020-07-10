@@ -20,6 +20,7 @@ class PointsController {
 
         return res.json(points)
     }
+    
     async create(req: Request, res: Response) {
         const {
             name,
